@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pytest
 
 
-class TestSample():
+class TestSample:
     @pytest.fixture()
     def test_setup(self):
         global driver
@@ -20,19 +20,19 @@ class TestSample():
         driver.quit()
         print("Test Completed")
 
-    def test_link(self,test_setup):
+    def test_link(self, test_setup):
         element = driver.find_element(By.LINK_TEXT, "This is a link")
         text = element.get_attribute("href")
         print(text)
         element.click()
 
-    def test_textbox(self,test_setup):
+    def test_textbox(self, test_setup):
         element = driver.find_element(By.ID, "fname")
         element.clear()
         element.send_keys("Trial Text")
         print("Text box successfully Checked")
 
-    def test_button(self,test_setup):
+    def test_button(self, test_setup):
         element = driver.find_element(By.ID, "idOfButton")
         old_element_colour = element.value_of_css_property("background-color")
         element.click()
@@ -51,7 +51,7 @@ class TestSample():
         alert.accept()
         print("Double click successfully Checked")
 
-    def test_radio(self,test_setup):
+    def test_radio(self, test_setup):
         m_radio = driver.find_element(By.ID, "male")
         f_radio = driver.find_element(By.ID, "female")
         m_radio.click()
@@ -59,12 +59,12 @@ class TestSample():
         assert not f_radio.is_selected()
         print("Radio Button successfully Checked")
 
-    def test_checkbox(self,test_setup):
+    def test_checkbox(self, test_setup):
         driver.find_element(By.CLASS_NAME, "Automation").click()
         driver.find_element(By.CLASS_NAME, "Performance").click()
         print("Checkbox successfully Verified")
 
-    def test_dropdown(self,test_setup):
+    def test_dropdown(self, test_setup):
         driver.find_element(By.ID, "testingDropdown").click()
         time.sleep(1)
         driver.find_element(By.ID, "automation").click()
@@ -83,7 +83,7 @@ class TestSample():
         time.sleep(1)
         print("DropDown successfully Checked")
 
-    def test_alertbox(self,test_setup):
+    def test_alertbox(self, test_setup):
         driver.find_element(By.XPATH, "//button[@onclick='generateAlertBox()']").click()
         WebDriverWait(driver, 10).until(EC.alert_is_present())
         alert = driver.switch_to.alert
@@ -91,11 +91,11 @@ class TestSample():
         alert.accept()
         print("Alert Button successfully Checked")
 
-    def test_confirmbutton(self,test_setup):
+    def test_confirmbutton(self, test_setup):
         driver.find_element(By.XPATH, "//button[@onclick='generateConfirmBox()']").click()
         WebDriverWait(driver, 10).until(EC.alert_is_present())
         alert = driver.switch_to.alert
-        num = random.randint(0,1)
+        num = random.randint(0, 1)
         if num == 1:
             alert.accept()
             element = driver.find_element(By.ID, "demo")
@@ -106,6 +106,7 @@ class TestSample():
             element = driver.find_element(By.ID, "demo")
             response = element.text
             assert response == "You pressed Cancel!"
+
 
 if __name__ == "main":
     pytest.main()
