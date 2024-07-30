@@ -27,7 +27,9 @@ class TestSample():
         element.click()
 
     def test_textbox(self,test_setup):
-        driver.find_element(By.ID, "fname").send_keys("Gaurav")
+        element = driver.find_element(By.ID, "fname")
+        element.clear()
+        element.send_keys("Trial Text")
         print("Text box successfully Checked")
 
     def test_button(self,test_setup):
